@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { AddCart, EmptyCart, User, Wishlist } from "../../Assets/icons";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
 const Header = () => {
-  const { products, status, cart } = useSelector(
-    (state: RootState) => state.products
-  );
+  const { cart } = useSelector((state: RootState) => state.products);
   console.log(cart, "Hcart");
 
   return (

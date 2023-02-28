@@ -11,7 +11,6 @@ type CardsType = {
   onClick: () => void;
   handleCart: () => void;
   productId?: any;
-  // rating:string;
 };
 const Cards = ({
   title,
@@ -23,9 +22,7 @@ const Cards = ({
   className,
   productId,
 }: CardsType) => {
-  const { StatusById, productsById, cart } = useSelector(
-    (state: RootState) => state.products
-  );
+  const { cart } = useSelector((state: RootState) => state.products);
 
   const checkbyId = (id: number) => {
     console.log("Q1", id);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useAppDispatch } from "../../app/hooks";
 import {
   addToCart,
@@ -11,7 +11,6 @@ import Cards from "../../Components/Cards";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const [formatttedData, setFormattedData] = useState<any>([]);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { products, status, cart } = useSelector(
@@ -61,7 +60,6 @@ const HomePage = () => {
               price={el.price}
               image={el.thumbnail}
               productId={el?.id}
-              // rating={el.rating}
               handleCart={() => handleCart(el?.id)}
               onClick={() => navigate(`/product-detail/${el.id}`)}
             />

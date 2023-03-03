@@ -8,7 +8,6 @@ export interface ProductsState {
   StatusById: boolean;
   cart: any;
 }
-
 const initialState: ProductsState = {
   products: [],
   cart: [],
@@ -16,7 +15,6 @@ const initialState: ProductsState = {
   productsById: {},
   StatusById: false,
 };
-
 // API Call is done after dispatching the action from /pages/homepage/ component
 export const productsAsync = createAsyncThunk(
   "products/fetchProducts",
@@ -40,7 +38,7 @@ export const productsSlice = createSlice({
 
   reducers: {
     addToCart: (state, action) => {
-      state.cart = action.payload
+      state.cart = action.payload;
     },
   },
 
@@ -67,6 +65,6 @@ export const productsSlice = createSlice({
     });
   },
 });
-  export const { addToCart } = productsSlice.actions;
+export const { addToCart } = productsSlice.actions;
 
 export default productsSlice.reducer;

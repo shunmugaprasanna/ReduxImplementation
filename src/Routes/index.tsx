@@ -3,6 +3,7 @@ import { Routes } from "react-router";
 import HomePage from "../pages/Homepage";
 import ProductDetail from "../pages/Product";
 import Header from "../Components/Header";
+import Cart from "../pages/Cart";
 
 const RoutesWrapper = () => {
   return (
@@ -12,7 +13,9 @@ const RoutesWrapper = () => {
       </div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/product-detail/:id" element={<ProductDetail />} />
+        <Route path="/product-detail/:id/:isAdded" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
+
       </Routes>
     </BrowserRouter>
   );

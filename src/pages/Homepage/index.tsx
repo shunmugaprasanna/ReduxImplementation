@@ -1,18 +1,16 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import {
-  addToCart,
-  productsAsync,
-} from "../../features/products/productsSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import Loader from "../../Components/Loader";
 import Cards from "../../Components/Cards";
-import { useNavigate } from "react-router-dom";
+import {
+  addToCart,
+  productsAsync,
+} from "../../features/products/productsSlice";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { products, status, cart } = useSelector(
     (state: RootState) => state.products
   );
@@ -22,27 +20,46 @@ const HomePage = () => {
     dispatch(productsAsync());
   }, []);
 
-  const handleCart = (id: string) => {
+  const handleCart = (productDetails: any) => {
     if (cart.length === 0) {
-      console.log("Q1first");
-      dispatch(addToCart([{ id: id, count: 1 }]));
+      dispatch(
+        addToCart([
+          {
+            id: productDetails.id,
+            count: 1,
+            price: productDetails.price,
+            title: productDetails.title,
+            thumbnail: productDetails.thumbnail,
+          },
+        ])
+      );
     } else {
       let isNewItemFound = true;
       let finalArray = cart?.map((el: any) => {
-        if (el.id === id) {
+        if (el.id === productDetails.id) {
           isNewItemFound = false;
-          return { id: el.id, count: el.count + 1 };
+          return {
+            id: el.id,
+            count: el.count + 1,
+            price: el.price,
+            title: el.title,
+            thumbnail: el.thumbnail,
+          };
         } else {
-          console.log("Q1three");
           return el;
         }
       });
 
       if (isNewItemFound) {
-        finalArray.push({ id: id, count: 1 });
+        finalArray.push({
+          id: productDetails.id,
+          count: 1,
+          price: productDetails.price,
+          title: productDetails.title,
+          thumbnail: productDetails.thumbnail,
+        });
       }
       dispatch(addToCart(finalArray));
-      console.log("finalArray", finalArray);
     }
   };
 
@@ -60,8 +77,7 @@ const HomePage = () => {
               price={el.price}
               image={el.thumbnail}
               productId={el?.id}
-              handleCart={() => handleCart(el?.id)}
-              onClick={() => navigate(`/product-detail/${el.id}`)}
+              handleCart={() => handleCart(el)}
             />
           ))}
         </div>

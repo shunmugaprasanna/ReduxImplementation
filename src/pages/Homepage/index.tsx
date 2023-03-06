@@ -35,6 +35,7 @@ const HomePage = () => {
       );
     } else {
       let isNewItemFound = true;
+
       let finalArray = cart?.map((el: any) => {
         if (el.id === productDetails.id) {
           isNewItemFound = false;
@@ -61,10 +62,11 @@ const HomePage = () => {
       }
       dispatch(addToCart(finalArray));
     }
+    console.log("first22", productDetails, cart);
   };
 
   return (
-    <div className="flex flex-col w-full h-auto items-center justify-center">
+    <div className="flex flex-col w-full h-auto items-center justify-center pt-28">
       {status ? (
         <Loader />
       ) : (

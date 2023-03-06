@@ -22,7 +22,7 @@ const WishlistCards = ({ product  }: WishlistCardType) => {
           <p>Title : {product.title}</p>
           <span>Price : {product.price}</span>
           <span>{product.price * product.count}</span>
-          <div className="py-3">
+          {/* <div className="py-3">
             <button className="w-10 border-[#e6e2e2] border-[1px]  text-lg font-medium rounded-tl-xl rounded-bl-xl">
               -
             </button>
@@ -32,7 +32,7 @@ const WishlistCards = ({ product  }: WishlistCardType) => {
             <button className="w-10 border-[#e6e2e2] border-[1px] text-lg font-medium rounded-tr-xl rounded-br-xl">
               +
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../app/hooks";
-import { productsByIdAsync } from "../../features/products/productsSlice";
+import {
+  productsByIdAsync,
+  addToCart,
+} from "../../features/products/productsSlice";
 import { useParams } from "react-router-dom";
 import { RootState } from "../../app/store";
 import Loader from "../../Components/Loader";
 import { AddtoCart } from "../../Assets/icons";
-import { addToCart } from "../../features/products/productsSlice";
 
 const ProductDetail = () => {
   const dispatch = useAppDispatch();
@@ -17,25 +19,20 @@ const ProductDetail = () => {
     (state: RootState) => state.products
   );
   let isTheCardAdded = cart.some((item: any) => item.id == id) ? true : false;
-
   const handleAdded = () => {
     if (cart.length === 0) {
       dispatch(addToCart([{ id: id, count: 1 }]));
     } else {
       let isNewItemFound = true;
       let finalArray = cart?.map((el: any) => {
-        if (el.id == id) {
-          console.log("Q1");
+        if (el.id === id) {
           isNewItemFound = false;
           return el;
         } else {
-          console.log("Q2");
           return el;
         }
       });
-
       if (!isTheCardAdded) {
-        console.log("Q3");
         finalArray.push({ id: id, count: 1 });
       }
       dispatch(addToCart(finalArray));
@@ -61,7 +58,7 @@ const ProductDetail = () => {
       {StatusById ? (
         <Loader />
       ) : (
-        <div className="pt-[80px] flex justify-center gap-8">
+        <div className=" flex justify-center gap-8 h-[calc(100vh - 112px)] pt-[150px]">
           <div className="w-[600px] h-[660px] bg-[#F7F7F7] shadow-[0px_20px_35px_rgba(0,0,0,0.05)] rounded-[24px] py-8 px-12">
             <img
               className=" rounded-2xl mt-2 max-h-96"

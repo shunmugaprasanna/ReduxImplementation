@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchProducts, fetchProductsById } from "./productAPI";
-
 export interface ProductsState {
   products: any;
   status: boolean;
@@ -47,6 +46,7 @@ export const productsSlice = createSlice({
       state.status = true;
     });
     builder.addCase(productsAsync.fulfilled, (state, action) => {
+      console.log('first', action)
       state.status = false;
       state.products = action.payload;
     });

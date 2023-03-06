@@ -6,8 +6,6 @@ import Loader from "../../Components/Loader";
 const Cart = () => {
   const { status, cart } = useSelector((state: RootState) => state.products);
 
-  console.log("Q1cvb", cart);
-
   return (
     <div>
       {status ? (
